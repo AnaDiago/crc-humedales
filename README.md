@@ -2,6 +2,15 @@
 
 Database structure for wetlands (humedales) management system.
 
+## Database Infrastructure
+
+The database is hosted on [Supabase](https://supabase.com), providing:
+- Secure PostgreSQL database hosting
+- Real-time capabilities
+- Row Level Security (RLS)
+- REST and GraphQL APIs
+- Database backups
+
 ## Database Schema
 
 ### Humedales Table
@@ -61,3 +70,50 @@ The `humedales` table stores information about wetlands with the following struc
 - `descri_gen` - VARCHAR(254), General description
 - `descri_bio` - VARCHAR(254), Biological description
 - `descri_tec` - VARCHAR(254), Technical description
+
+## Prisma Setup
+
+### Installation
+
+1. Install Prisma as a development dependency:
+```bash
+npm install prisma --save-dev
+```
+
+2. Initialize Prisma in your project:
+```bash
+npx prisma init
+```
+
+This will create:
+- A `prisma` directory with your `schema.prisma` file
+- A `.env` file for your database connection string
+
+3. Update your `.env` file with your Supabase connection string:
+```bash
+DATABASE_URL="postgres://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:5432/postgres"
+```
+
+### Database Migrations
+
+1. After modifying your schema, create and apply migrations:
+```bash
+npx prisma migrate dev --name init
+```
+
+This command will:
+- Create a new SQL migration file
+- Apply the migration to your database
+- Regenerate the Prisma Client
+
+2. To generate Prisma Client without migrations:
+```bash
+npx prisma generate
+```
+
+3. To view your database in Prisma Studio:
+```bash
+npx prisma studio
+```
+
+Remember to add `node_modules` and `.env` to your `.gitignore` file to keep sensitive information secure.
