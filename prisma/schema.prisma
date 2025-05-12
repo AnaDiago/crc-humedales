@@ -15,17 +15,17 @@ datasource db {
 
 // Schemas for your models
 
-enum Ubicacion {
+enum Ubicación {
   Urbano
   Rural
 }
 
 enum Naturaleza {
-  Lentico
-  Lotico
+  Léntico
+  Lótico
 }
 
-enum Regimen {
+enum Régimen {
   Permanente
   Temporal
 }
@@ -41,31 +41,31 @@ enum Tipo {
   Lacustre
   Quebrada
   Nacimiento
-  Rio
+  Río
   Madrevieja
-  ZanjonOAcequia
+  Zanjón_o_Acequía
   Saladero
-  GeotermicoOTermal
+  Geotérmico_o_Termal
   Otro
 }
 
 enum Uso {
   Reservorio
-  Conservacion
-  Recreacion
-  InteresAmbiental
-  Paisajistico
+  Conservación
+  Recreación
+  Interes_Ambiental
+  Paisajístico
   Piscicultura
   Industrial
-  Desecacion
-  ReservorioRecreacion
-  ConservacionReservorio
-  ConservacionRecreacion
-  ProtecionConservacion
-  ProteccionReservorio
-  DesecacionReservorio
-  ZonaDeInundacion
-  Urbanizacion
+  Desecación
+  Reservorio_recreación
+  Conservación_reservorio
+  Conservación_recreación
+  Proteción_conservación
+  Protección_reservorio
+  Desecación_reservorio
+  Zona_de_inundación
+  Urbanización
   Ninguno
   Otro
 }
@@ -74,34 +74,34 @@ enum Estado {
   Alta
   Media
   Baja
-  SinConservacion
+  Sin_Conservación
 }
 
 enum Nivel {
   Alta
   Media
   Baja
-  SinIntervencion
+  Sin_Intervención
 }
 
 enum Impacto {
-  ModificacionDeCursosDeAgua
-  ContaminacionDelAgua
+  Modificación_de_Cursos_De_Agua
+  Contaminación_del_Agua
   Desecamiento
-  AlteracionDelSuelo
-  AlteracionDeLaForma
-  RellenosEscombros
-  ConstruccionesYObras
-  UrbanismoParcelacion
-  CarreterasYCaminos
+  Alteración_del_Suelo
+  Alteración_de_La_Forma
+  Rellenos_Escombros
+  Construcciones_Y_Obras
+  Urbanismo_Parcelación
+  Carreteras_Y_Caminos
   Cultivos
-  PastoreoDeGanado
-  TalaDeforestacion
-  Mineria
-  VertimientoDeBasuras
-  CazaPescaIndiscriminada
-  ConflictosSociales
-  FenomenosNaturales
+  Pastoreo_de_Ganado
+  Tala_Deforestación
+  Minería
+  Vertimiento_de_Basuras
+  Caza_Pesca_Indiscriminada
+  Conflictos_Sociales
+  Fenómenos_Naturales
   Quemas
   Otros
 }
@@ -112,13 +112,20 @@ enum Prioridad {
   Baja
 }
 
-enum Accion {
-  Conservacion
+enum Acción {
+  Conservación
   Aislamiento
-  Reforestacion
-  EducacionAmbiental
+  Reforestación
+  Educación_Ambiental
   Otro
 }
+
+enum SEE {
+  Servicos_de_Regulación
+  Servicios_Culturales
+  Servicios_de_Aprovicionamiento 
+  Servicios_de_Sostenimiento 
+} 
 
 model Humedal {
   objectid   Int         @id @default(autoincrement())
@@ -136,20 +143,21 @@ model Humedal {
   municipio  String?     @db.VarChar(50)
   departamen String?     @db.VarChar(15)
   vereda     String?     @db.VarChar(50)
-  ubicacion  Ubicacion?
+  ubicación  Ubicación?
   jurisdicci String?     @db.VarChar(15)
   naturaleza Naturaleza?
-  regimen_h  Regimen?
+  régimen_h  Régimen?
   origen     Origen?
   tipo       Tipo?
   clase      String?     @db.VarChar(25)
   instru_ges String?     @db.VarChar(254)
+  see        SEE []
   uso        Uso[]
   estado     Estado?
   nivel_inte Nivel?
   impactos   Impacto[]
   prioridad  Prioridad?
-  accion     Accion?
+  acción     Acción?
   complejo   String?     @db.VarChar(254)
   cuenca     String?     @db.VarChar(100)
   subcuenca  String?     @db.VarChar(100)
@@ -164,3 +172,5 @@ model Humedal {
 
   @@map("humedales")
 }
+
+
